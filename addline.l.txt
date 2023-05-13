@@ -1,0 +1,15 @@
+%{
+#include<stdio.h>
+int In=0;
+%}
+%%
+.* {In++; fprintf(yyout,"\n%d:%s",In,yytext);}
+%%
+int yywrap(){}
+int main()
+{
+yyin=fopen("factorial.cpp","r");
+yyout=fopen("out.txt","w");
+yylex();
+return 0;
+}
